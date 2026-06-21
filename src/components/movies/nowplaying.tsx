@@ -1,0 +1,147 @@
+import React, { useEffect, useState } from "react";
+import { ACCESS_TOKEN, BASE_URL } from "../../constant";
+import MoviesComponent from "./index";
+import { Flex, Box, Heading, Grid } from "@radix-ui/themes";
+import {
+	Pagination,
+	PaginationContent,
+	PaginationEllipsis,
+	PaginationItem,
+	PaginationLink,
+	PaginationNext,
+	PaginationPrevious,
+} from "@/components/ui/pagination";
+
+const NowPlaying = () => {
+	const [nowPlayingList, setNowPlayingList] = useState([]);
+	const [loading, setLoading] = useState<boolean>(true);
+	const [currentPage, setCurrentPage] = useState<number>(1);
+
+	const getNowPlayingList = (page: number) => {
+		setLoading(true);
+		fetch(BASE_URL + `movie/now_playing?page=${page}&language=en-US`, {
+			method: "get",
+			headers: {
+				accept: "application/json",
+				Authorization: `Bearer ${ACCESS_TOKEN}`,
+			},
+		})
+			.then((res) => res.json())
+			.then((response) => {
+				setNowPlayingList(response.results || []);
+			})
+			.finally(() => {
+				setLoading(false);
+			});
+	};
+
+	useEffect(() => {
+		getNowPlayingList(currentPage);
+	}, [currentPage]);
+
+	return (
+		<Flex direction="column" align="center" gap="4" width="100%">
+			<Grid columns="3" align="center" width="100%" mt="6">
+				<Box></Box>
+				<Heading as="h1" align="center">
+					Now Playing List
+				</Heading>
+				<Flex justify="end">
+					<Pagination>
+						<PaginationContent>
+							<PaginationItem>
+								<PaginationPrevious
+									href="#"
+									onClick={(e) => {
+										e.preventDefault();
+										if (currentPage > 1)
+											setCurrentPage((p) => p - 1);
+									}}
+								/>
+							</PaginationItem>
+							{currentPage > 1 && (
+								<PaginationItem>
+									<PaginationLink
+										href="#"
+										onClick={(e) => {
+											e.preventDefault();
+											setCurrentPage(currentPage - 1);
+										}}
+									>
+										{currentPage - 1}
+									</PaginationLink>
+								</PaginationItem>
+							)}
+							<PaginationItem>
+								<PaginationLink href="#" isActive>
+									{currentPage}
+								</PaginationLink>
+							</PaginationItem>
+							<PaginationItem>
+								<PaginationLink
+									href="#"
+									onClick={(e) => {
+										e.preventDefault();
+										setCurrentPage(currentPage + 1);
+									}}
+								>
+									{currentPage + 1}
+								</PaginationLink>
+							</PaginationItem>
+							<PaginationItem>
+								<PaginationLink
+									href="#"
+									onClick={(e) => {
+										e.preventDefault();
+										setCurrentPage(currentPage + 2);
+									}}
+								>
+									{currentPage + 2}
+								</PaginationLink>
+							</PaginationItem>
+							<PaginationItem>
+								<PaginationEllipsis />
+							</PaginationItem>
+							<PaginationItem>
+								<PaginationNext
+									href="#"
+									onClick={(e) => {
+										e.preventDefault();
+										setCurrentPage((p) => p + 1);
+									}}
+								/>
+							</PaginationItem>
+						</PaginationContent>
+					</Pagination>
+				</Flex>
+			</Grid>
+
+			<Box className="relative w-full overflow-hidden py-4">
+				{loading ? (
+					<Box className="text-center py-4">Loading...</Box>
+				) : (
+					<Flex gap="6" className="w-max animate-marquee">
+						{nowPlayingList.map((item, index) => (
+							<Box
+								key={`playing-1-${index}`}
+								className="w-32 shrink-0"
+							>
+								<MoviesComponent movie={item} />
+							</Box>
+						))}
+						{nowPlayingList.map((item, index) => (
+							<Box
+								key={`playing-2-${index}`}
+								className="w-32 shrink-0"
+							>
+								<MoviesComponent movie={item} />
+							</Box>
+						))}
+					</Flex>
+				)}
+			</Box>
+		</Flex>
+	);
+};
+
+export default NowPlaying;
