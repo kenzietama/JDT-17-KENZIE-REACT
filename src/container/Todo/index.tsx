@@ -20,7 +20,7 @@ const Todo = () => {
 
 	return (
 		<div className="p-6 max-w-2xl mx-auto">
-			{/* Input Form */}
+			{/* input */}
 			<div className="flex gap-2 mb-6">
 				<input
 					className="bg-white border border-gray-300 rounded px-3 py-2 text-black flex-1"
@@ -36,11 +36,11 @@ const Todo = () => {
 				</button>
 			</div>
 
-			{/* Todo Table */}
+			{/* table */}
 			{todos.length > 0 ? (
-				<table className="w-full border-collapse border border-gray-200 shadow-sm rounded-lg overflow-hidden">
+				<table className="w-full border-collapse border shadow-sm rounded-lg overflow-hidden">
 					<thead>
-						<tr className="bg-gray-100 text-left text-gray-700 uppercase text-sm tracking-wider">
+						<tr className="text-left uppercase text-sm tracking-wider">
 							<th className="p-3 border-b border-gray-200 w-12 text-center">
 								Status
 							</th>
@@ -56,26 +56,23 @@ const Todo = () => {
 						{todos.map((item) => (
 							<tr
 								key={item.id}
-								className="hover:bg-gray-50 border-b border-gray-200 transition-colors"
+								className="border-b transition-colors"
 							>
-								{/* Checkbox Column */}
 								<td className="p-3 text-center vertical-middle">
 									<input
 										type="checkbox"
 										className="w-4 h-4 cursor-pointer accent-blue-500"
 										checked={item.isCompleted}
-										onChange={() => toggle(item.id)} // Direct execution
+										onChange={() => toggle(item.id)}
 									/>
 								</td>
 
-								{/* Text Column */}
 								<td
-									className={`p-3 text-black ${item.isCompleted ? "line-through text-gray-400" : ""}`}
+									className={`p-3 ${item.isCompleted ? "line-through text-gray-400" : ""}`}
 								>
 									{item.text}
 								</td>
 
-								{/* Actions Column */}
 								<td className="p-3 text-center">
 									<button
 										className="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1 rounded transition-colors"

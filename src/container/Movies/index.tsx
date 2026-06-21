@@ -1,61 +1,67 @@
-import React from "react";
-import { usePopular } from "../../hooks/Movies/usePopular";
-import MoviesComponent from "../../components/movies";
-import type { Movie } from "@/service/Movies";
-import { Flex, Grid, Heading, Box } from "@radix-ui/themes";
-import { Button } from "@/components/ui/button";
-import { ArrowRightIcon } from "lucide-react";
+import { NavLink, Outlet } from "react-router";
+import { Flex } from "@radix-ui/themes";
 import NowPlaying from "../../components/movies/nowplaying";
-import {
-	Carousel,
-	CarouselContent,
-	CarouselItem,
-	CarouselNext,
-	CarouselPrevious,
-} from "@/components/ui/carousel";
 
 const Movies = () => {
-	const { popularMovie } = usePopular();
-
 	return (
-		<Flex direction="column" align="center" gap="4">
-			{/* Now Playing Component */}
+		<Flex direction="column" align="center" gap="4" width="100%">
+			{/* Now Playing marquee strip */}
 			<NowPlaying />
 
-			{/* Popular Movies */}
-			<Grid columns="3" align="center" width="100%" mt="6">
-				<Box></Box>
-				<Heading as="h1" mt="6" align="center">
-					Now Playing List
-				</Heading>
-				<Flex justify="end">
-					<Button className="mr-5">
-						<ArrowRightIcon />
-					</Button>
-				</Flex>
-			</Grid>
+			{/* Sub-navigation */}
+			<Flex gap="3" mt="4">
+				<NavLink
+					to="/movie-page/now-playing"
+					className={({ isActive }) =>
+						`px-4 py-2 rounded-md text-sm font-medium border transition-all ${
+							isActive
+								? "bg-primary text-primary-foreground border-primary"
+								: "bg-background text-muted-foreground border-border hover:bg-muted"
+						}`
+					}
+				>
+					Now Playing
+				</NavLink>
+				<NavLink
+					to="/movie-page/popular"
+					className={({ isActive }) =>
+						`px-4 py-2 rounded-md text-sm font-medium border transition-all ${
+							isActive
+								? "bg-primary text-primary-foreground border-primary"
+								: "bg-background text-muted-foreground border-border hover:bg-muted"
+						}`
+					}
+				>
+					Popular
+				</NavLink>
+				<NavLink
+					to="/movie-page/top-rated"
+					className={({ isActive }) =>
+						`px-4 py-2 rounded-md text-sm font-medium border transition-all ${
+							isActive
+								? "bg-primary text-primary-foreground border-primary"
+								: "bg-background text-muted-foreground border-border hover:bg-muted"
+						}`
+					}
+				>
+					Top Rated
+				</NavLink>
+				<NavLink
+					to="/movie-page/upcoming"
+					className={({ isActive }) =>
+						`px-4 py-2 rounded-md text-sm font-medium border transition-all ${
+							isActive
+								? "bg-primary text-primary-foreground border-primary"
+								: "bg-background text-muted-foreground border-border hover:bg-muted"
+						}`
+					}
+				>
+					Upcoming
+				</NavLink>
+			</Flex>
 
-			<Carousel
-				opts={{
-					align: "start",
-				}}
-				className="w-full max-w-4xl mx-auto"
-			>
-				<CarouselContent>
-					{popularMovie.map((item: Movie, index) => (
-						<CarouselItem
-							key={index}
-							className="basis-1/2 lg:basis-1/3"
-						>
-							<div className="p-1">
-								<MoviesComponent movie={item} width={500} />
-							</div>
-						</CarouselItem>
-					))}
-				</CarouselContent>
-				<CarouselPrevious variant="default" />
-				<CarouselNext variant="default" />
-			</Carousel>
+			{/* Active child route renders here */}
+			<Outlet />
 		</Flex>
 	);
 };

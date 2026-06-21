@@ -29,8 +29,6 @@ const NowPlaying = () => {
 			});
 	};
 
-	// const navigate = useNavigate('/movie-page/top-rated', state: { getNowPlayingList(1) });
-
 	useEffect(() => {
 		getNowPlayingList(currentPage);
 	}, [currentPage]);
@@ -40,13 +38,8 @@ const NowPlaying = () => {
 			<Grid columns="3" align="center" width="100%" mt="6">
 				<Box></Box>
 				<Heading as="h1" align="center">
-					Now Playing List
+					Now Playing
 				</Heading>
-				<Flex justify="end">
-					<Button className="mr-5">
-						<ArrowRightIcon />
-					</Button>
-				</Flex>
 			</Grid>
 
 			<Box className="relative w-full overflow-hidden py-4">
