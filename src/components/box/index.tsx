@@ -1,27 +1,40 @@
-import React from "react";
+import { Card, Heading, Text, Flex } from "@radix-ui/themes";
 
 const Index = ({
-  title,
-  desc,
-  index,
+	title,
+	desc,
+	index,
 }: {
-  title: string;
-  desc: string;
-  index: number;
+	title: string;
+	desc: string;
+	index: number;
 }) => {
-  return (
-    <div
-      className={`w-72 h-72 ${index % 2 == 0 ? "bg-blue-800" : "bg-blue-100"} text-black rounded-lg flex flex-col`}
-    >
-      <div className="">
-        <h4>{title}</h4>
-      </div>
-      <hr className="w-5 self-center" />
-      <div className="">
-        <p>{desc}</p>
-      </div>
-    </div>
-  );
+	return (
+		<Card
+			size="3"
+			style={{
+				width: "18rem",
+				height: "18rem",
+			}}
+			className="flex flex-col justify-between"
+		>
+			<Flex direction="column" gap="3" height="100%">
+				<Flex direction="column" gap="2">
+					<Heading size="4">{title}</Heading>
+				</Flex>
+
+				<Text
+					size="2"
+					style={{
+						flexGrow: 1,
+						marginTop: "0.5rem",
+					}}
+				>
+					{desc}
+				</Text>
+			</Flex>
+		</Card>
+	);
 };
 
 export default Index;
