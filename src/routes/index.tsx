@@ -10,6 +10,7 @@ import NowPlayingPage from "@/container/NowPlaying";
 import Popular from "@/container/Popular";
 import TopRated from "@/container/TopRated";
 import Upcoming from "@/container/Upcoming";
+import Search from "@/container/Search";
 import Layout from "@/components/layout";
 
 export const routes = createBrowserRouter([
@@ -55,6 +56,10 @@ export const routes = createBrowserRouter([
               {
                 path: "upcoming",
                 element: <Upcoming />,
+              },
+              {
+                path: "search",
+                element: <Search />,
               },
             ],
           },

@@ -45,18 +45,23 @@ const NowPlayingPage = () => {
 				Now Playing
 			</Heading>
 
-			{/* Movie Grid */}
 			{loading ? (
 				<Box className="text-center py-8">Loading...</Box>
 			) : (
-				<Grid columns={{ initial: "2", sm: "3", md: "4", lg: "5" }} gap="4" width="100%">
+				<Grid
+					columns={{ initial: "2", sm: "3", md: "4", lg: "5" }}
+					gap="4"
+					width="100%"
+				>
 					{nowPlayingList.map((item: any, index: number) => (
-						<MoviesComponent movie={item} key={`nowplaying-${index}`} />
+						<MoviesComponent
+							movie={item}
+							key={`nowplaying-${index}`}
+						/>
 					))}
 				</Grid>
 			)}
 
-			{/* Shadcn Pagination */}
 			<Pagination>
 				<PaginationContent>
 					<PaginationItem>
@@ -64,7 +69,8 @@ const NowPlayingPage = () => {
 							href="#"
 							onClick={(e) => {
 								e.preventDefault();
-								if (currentPage > 1) setCurrentPage((p) => p - 1);
+								if (currentPage > 1)
+									setCurrentPage((p) => p - 1);
 							}}
 						/>
 					</PaginationItem>

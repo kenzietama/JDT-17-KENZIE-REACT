@@ -23,18 +23,20 @@ const Upcoming = () => {
 				Upcoming Movies
 			</Heading>
 
-			{/* Movie Grid */}
 			{loading ? (
 				<Box className="text-center py-8">Loading...</Box>
 			) : (
-				<Grid columns={{ initial: "2", sm: "3", md: "4", lg: "5" }} gap="4" width="100%">
+				<Grid
+					columns={{ initial: "2", sm: "3", md: "4", lg: "5" }}
+					gap="4"
+					width="100%"
+				>
 					{upcomingMovies.map((item: Movie) => (
 						<MoviesComponent movie={item} key={item.id} />
 					))}
 				</Grid>
 			)}
 
-			{/* Shadcn Pagination */}
 			<Pagination>
 				<PaginationContent>
 					<PaginationItem>
@@ -42,7 +44,8 @@ const Upcoming = () => {
 							href="#"
 							onClick={(e) => {
 								e.preventDefault();
-								if (currentPage > 1) setCurrentPage((p) => p - 1);
+								if (currentPage > 1)
+									setCurrentPage((p) => p - 1);
 							}}
 						/>
 					</PaginationItem>

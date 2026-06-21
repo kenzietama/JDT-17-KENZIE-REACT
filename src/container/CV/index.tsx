@@ -8,8 +8,33 @@ import {
 	Container,
 	Badge,
 } from "@radix-ui/themes";
+import { useState } from "react";
 
 const Index = () => {
+	const experience = [
+		{
+			description: "",
+		},
+		{
+			description:
+				"Designed and developed an automated aerator control system using a Fuzzy Inference System (FIS) to maintain optimal dissolved oxygen levels for Vannamei shrimp cultivation. Integrated industrial-grade hardware, including Variable Frequency Drive, Dissolved Oxygen sensor, and a Single Board Computer. Developed the core control algorithm in Python, implementing data acquisition and failover mechanism to ensure operation stability and energy efficiency.",
+		},
+		{
+			description:
+				"Instructed 150+ students on Digital Systems fundamentals, including logic gates, binary arithmetic, and circuit design. Developed and implemented real-world case studies into lab assignments to enhance students' analytical skills. Strengthened grading integrity by implementing standardized assessment rubrics and anti-plagiarism measures.",
+		},
+		{
+			description:
+				"Managed software engineering related Teaching Assistant recruitment and selection process. Standardized and optimized Laboratory Standard Operating Procedures (SOP).",
+		},
+	];
+
+	const handleClick = (index: number) => {
+		setXpIndex(index);
+	};
+
+	const [xpIndex, setXpIndex] = useState<number>(0);
+
 	return (
 		<Container size="3" p="4">
 			<Flex direction="column" gap="4" align="center" mt="10">
@@ -60,7 +85,6 @@ const Index = () => {
 				</Card>
 
 				{/* experience */}
-				{/* Experience Section */}
 				<Box style={{ width: "100%" }}>
 					<Heading size="5" mb="4">
 						Experience
@@ -68,7 +92,14 @@ const Index = () => {
 
 					<Grid columns={{ initial: "1", sm: "3" }} gap="4">
 						{/* Job Card 1 */}
-						<Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--accent-9)] cursor-pointer">
+						<Card
+							onClick={() => handleClick(1)}
+							style={{
+								backgroundColor:
+									xpIndex === 1 ? "var(--cyan-3)" : undefined,
+							}}
+							className="transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-var(--accent-9) cursor-pointer"
+						>
 							<Flex direction="column" gap="2">
 								<img
 									className="w-full h-40 rounded-md object-cover"
@@ -82,7 +113,14 @@ const Index = () => {
 						</Card>
 
 						{/* Job Card 2 */}
-						<Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--accent-9)] cursor-pointer">
+						<Card
+							onClick={() => handleClick(2)}
+							style={{
+								backgroundColor:
+									xpIndex === 2 ? "var(--cyan-3)" : undefined,
+							}}
+							className="transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-var(--accent-9) cursor-pointer"
+						>
 							<Flex direction="column" gap="2">
 								<img
 									className="w-full h-40 rounded-md object-cover"
@@ -96,7 +134,14 @@ const Index = () => {
 						</Card>
 
 						{/* Job Card 3 */}
-						<Card className="transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[var(--accent-9)] cursor-pointer">
+						<Card
+							onClick={() => handleClick(3)}
+							style={{
+								backgroundColor:
+									xpIndex === 3 ? "var(--cyan-3)" : undefined,
+							}}
+							className="transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-var(--accent-9) cursor-pointer"
+						>
 							<Flex direction="column" gap="2">
 								<img
 									className="w-full h-40 rounded-md object-cover"
@@ -110,6 +155,22 @@ const Index = () => {
 						</Card>
 					</Grid>
 				</Box>
+
+				{/* xp description */}
+				{xpIndex === 0 ? (
+					<div></div>
+				) : (
+					<>
+						<Card
+							className="h-40"
+							style={{ backgroundColor: "var(--cyan-3)" }}
+						>
+							<Text as="p">
+								{experience[xpIndex]?.description}
+							</Text>
+						</Card>
+					</>
+				)}
 			</Flex>
 		</Container>
 	);

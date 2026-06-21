@@ -31,3 +31,23 @@ export const getUpcomingMovies = async (page: number = 1) => {
   }
 };
 
+export const searchMovies = async (
+  query: string,
+  page: number = 1,
+  includeAdult: boolean = false,
+  primaryReleaseYear?: string
+) => {
+  try {
+    let url = `search/movie?query=${encodeURIComponent(query)}&page=${page}&include_adult=${includeAdult}&language=en-US`;
+    if (primaryReleaseYear) {
+      url += `&primary_release_year=${encodeURIComponent(primaryReleaseYear)}`;
+    }
+    const response = await API.get(url);
+
+    return response.data as ResponseData;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
