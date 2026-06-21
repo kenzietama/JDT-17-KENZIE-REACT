@@ -2,7 +2,9 @@ import React from "react";
 import { usePopular } from "../../hooks/Movies/usePopular";
 import MoviesComponent from "../../components/movies";
 import type { Movie } from "@/service/Movies";
-import { Flex, Heading } from "@radix-ui/themes";
+import { Flex, Grid, Heading, Box } from "@radix-ui/themes";
+import { Button } from "@/components/ui/button";
+import { ArrowRightIcon } from "lucide-react";
 import NowPlaying from "../../components/movies/nowplaying";
 import {
 	Carousel,
@@ -21,14 +23,18 @@ const Movies = () => {
 			<NowPlaying />
 
 			{/* Popular Movies */}
-			<Heading as="h1" mt="6">
-				Popular Movies
-			</Heading>
-			{/* <Flex direction="row" wrap="wrap" gap="4" justify="center">
-				{popularMovie.map((item: Movie) => {
-					return <MoviesComponent movie={item} />;
-				})}
-			</Flex> */}
+			<Grid columns="3" align="center" width="100%" mt="6">
+				<Box></Box>
+				<Heading as="h1" mt="6" align="center">
+					Now Playing List
+				</Heading>
+				<Flex justify="end">
+					<Button className="mr-5">
+						<ArrowRightIcon />
+					</Button>
+				</Flex>
+			</Grid>
+
 			<Carousel
 				opts={{
 					align: "start",

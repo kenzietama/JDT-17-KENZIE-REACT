@@ -1,16 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ACCESS_TOKEN, BASE_URL } from "../../constant";
 import MoviesComponent from "./index";
 import { Flex, Box, Heading, Grid } from "@radix-ui/themes";
-import {
-	Pagination,
-	PaginationContent,
-	PaginationEllipsis,
-	PaginationItem,
-	PaginationLink,
-	PaginationNext,
-	PaginationPrevious,
-} from "@/components/ui/pagination";
+import { Button } from "@/components/ui/button";
+import { ArrowRightIcon } from "lucide-react";
+import { useNavigate } from "react-router";
 
 const NowPlaying = () => {
 	const [nowPlayingList, setNowPlayingList] = useState([]);
@@ -35,6 +29,8 @@ const NowPlaying = () => {
 			});
 	};
 
+	// const navigate = useNavigate('/movie-page/top-rated', state: { getNowPlayingList(1) });
+
 	useEffect(() => {
 		getNowPlayingList(currentPage);
 	}, [currentPage]);
@@ -47,72 +43,9 @@ const NowPlaying = () => {
 					Now Playing List
 				</Heading>
 				<Flex justify="end">
-					<Pagination>
-						<PaginationContent>
-							<PaginationItem>
-								<PaginationPrevious
-									href="#"
-									onClick={(e) => {
-										e.preventDefault();
-										if (currentPage > 1)
-											setCurrentPage((p) => p - 1);
-									}}
-								/>
-							</PaginationItem>
-							{currentPage > 1 && (
-								<PaginationItem>
-									<PaginationLink
-										href="#"
-										onClick={(e) => {
-											e.preventDefault();
-											setCurrentPage(currentPage - 1);
-										}}
-									>
-										{currentPage - 1}
-									</PaginationLink>
-								</PaginationItem>
-							)}
-							<PaginationItem>
-								<PaginationLink href="#" isActive>
-									{currentPage}
-								</PaginationLink>
-							</PaginationItem>
-							<PaginationItem>
-								<PaginationLink
-									href="#"
-									onClick={(e) => {
-										e.preventDefault();
-										setCurrentPage(currentPage + 1);
-									}}
-								>
-									{currentPage + 1}
-								</PaginationLink>
-							</PaginationItem>
-							<PaginationItem>
-								<PaginationLink
-									href="#"
-									onClick={(e) => {
-										e.preventDefault();
-										setCurrentPage(currentPage + 2);
-									}}
-								>
-									{currentPage + 2}
-								</PaginationLink>
-							</PaginationItem>
-							<PaginationItem>
-								<PaginationEllipsis />
-							</PaginationItem>
-							<PaginationItem>
-								<PaginationNext
-									href="#"
-									onClick={(e) => {
-										e.preventDefault();
-										setCurrentPage((p) => p + 1);
-									}}
-								/>
-							</PaginationItem>
-						</PaginationContent>
-					</Pagination>
+					<Button className="mr-5">
+						<ArrowRightIcon />
+					</Button>
 				</Flex>
 			</Grid>
 
