@@ -93,7 +93,7 @@ const Movies = () => {
 									htmlFor="search-query"
 									className="text-sm font-medium"
 								>
-									Query
+									Keyword
 								</label>
 								<Input
 									id="search-query"

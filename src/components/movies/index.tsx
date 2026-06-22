@@ -17,26 +17,13 @@ const MoviesComponent = ({ movie, width }: Props) => {
 	};
 
 	return (
-		// <div className="w-full flex items-center cursor-pointer" onClick={handleClick}>
-		//   <div className="flex flex-col">
-		//     <img
-		//       src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-		//       alt=""
-		//       width={50}
-		//       height={50}
-		//     />
-		//     <div className="flex">
-		//       <Label>{movie.original_title}</Label>
-		//     </div>
-		//   </div>
-		// </div>
 		<Flex
 			direction="column"
 			align="center"
 			mx="auto"
 			gap="2"
 			onClick={handleClick}
-			className="cursor-pointer"
+			className="cursor-pointer w-full min-w-0"
 		>
 			<img
 				src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
@@ -44,7 +31,7 @@ const MoviesComponent = ({ movie, width }: Props) => {
 				width={width || 250}
 				className="border-4 aspect-2/3"
 			/>
-			<Text className="truncate block w-full">
+			<Text className="truncate block w-full text-center">
 				{movie.original_title}
 			</Text>
 		</Flex>

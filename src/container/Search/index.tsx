@@ -20,7 +20,12 @@ const Search = () => {
 	const year = searchParams.get("year") || "";
 	const currentPage = parseInt(searchParams.get("page") || "1", 10);
 
-	const { searchResults, loading } = useSearch(query, currentPage, adult, year);
+	const { searchResults, loading } = useSearch(
+		query,
+		currentPage,
+		adult,
+		year,
+	);
 
 	const handlePageChange = (newPage: number) => {
 		setSearchParams((prev) => {
@@ -35,22 +40,28 @@ const Search = () => {
 				Search Results {query ? `for "${query}"` : ""}
 			</Heading>
 
-			{/* Movie Grid */}
 			{loading ? (
 				<Box className="text-center py-8">Loading...</Box>
 			) : !query.trim() ? (
-				<Box className="text-center py-8 text-muted-foreground">Enter a search query to find movies.</Box>
+				<Box className="text-center py-8 text-muted-foreground">
+					Enter a search keyword to find movies.
+				</Box>
 			) : searchResults.length === 0 ? (
-				<Box className="text-center py-8 text-muted-foreground">No movies found matching your search.</Box>
+				<Box className="text-center py-8 text-muted-foreground">
+					No movies found matching your search.
+				</Box>
 			) : (
-				<Grid columns={{ initial: "2", sm: "3", md: "4", lg: "5" }} gap="4" width="100%">
+				<Grid
+					columns={{ initial: "2", sm: "3", md: "4", lg: "5" }}
+					gap="4"
+					width="100%"
+				>
 					{searchResults.map((item: Movie) => (
 						<MoviesComponent movie={item} key={item.id} />
 					))}
 				</Grid>
 			)}
 
-			{/* Shadcn Pagination */}
 			{query.trim() && searchResults.length > 0 && (
 				<Pagination>
 					<PaginationContent>
@@ -59,7 +70,8 @@ const Search = () => {
 								href="#"
 								onClick={(e) => {
 									e.preventDefault();
-									if (currentPage > 1) handlePageChange(currentPage - 1);
+									if (currentPage > 1)
+										handlePageChange(currentPage - 1);
 								}}
 							/>
 						</PaginationItem>
