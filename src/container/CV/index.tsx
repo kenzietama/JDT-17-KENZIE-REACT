@@ -10,6 +10,11 @@ import {
 } from "@radix-ui/themes";
 import { useState } from "react";
 
+import tambakImg from "../../assets/tambak.jpeg";
+import ngasprakImg from "../../assets/ngasprak.jpeg";
+import cercImg from "../../assets/cerc.jpeg";
+import profileImg from "../../assets/picture.png";
+
 const Index = () => {
 	const experience = [
 		{
@@ -43,7 +48,7 @@ const Index = () => {
 					<Flex direction="row" gap="6" align="center">
 						<img
 							className="w-auto h-60 rounded-4xl"
-							src="src/assets/picture.png"
+							src={profileImg}
 							alt=""
 						/>
 						<Box>
@@ -103,7 +108,7 @@ const Index = () => {
 							<Flex direction="column" gap="2">
 								<img
 									className="w-full h-40 rounded-md object-cover"
-									src="src/assets/tambak.jpeg"
+									src={tambakImg}
 									alt="Control System Engineer"
 								/>
 								<Heading as="h3" size="3" mt="2">
@@ -124,7 +129,7 @@ const Index = () => {
 							<Flex direction="column" gap="2">
 								<img
 									className="w-full h-40 rounded-md object-cover"
-									src="src/assets/ngasprak.jpeg"
+									src={ngasprakImg}
 									alt="Lab Assistant"
 								/>
 								<Heading as="h3" size="3" mt="2">
@@ -145,7 +150,7 @@ const Index = () => {
 							<Flex direction="column" gap="2">
 								<img
 									className="w-full h-40 rounded-md object-cover"
-									src="src/assets/cerc.jpeg"
+									src={cercImg}
 									alt="CERC"
 								/>
 								<Heading as="h3" size="3" mt="2">
