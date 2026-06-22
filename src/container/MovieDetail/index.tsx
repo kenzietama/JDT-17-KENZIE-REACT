@@ -1,4 +1,3 @@
-import React from "react";
 import { useMovieDetail } from "@/hooks/Movies/useDetail";
 import { useLocation } from "react-router";
 import { Badge } from "@radix-ui/themes";

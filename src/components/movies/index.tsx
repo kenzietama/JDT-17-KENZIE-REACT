@@ -1,8 +1,6 @@
-import React from "react";
 import type { Movie } from "../../service/Movies";
-import { Label } from "../label";
 import { useNavigate } from "react-router";
-import { Box, Container, Flex, Heading, Text } from "@radix-ui/themes";
+import { Flex, Text } from "@radix-ui/themes";
 
 interface Props {
 	movie: Movie;

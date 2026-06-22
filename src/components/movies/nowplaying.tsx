@@ -2,14 +2,11 @@ import { useEffect, useState } from "react";
 import { ACCESS_TOKEN, BASE_URL } from "../../constant";
 import MoviesComponent from "./index";
 import { Flex, Box, Heading, Grid } from "@radix-ui/themes";
-import { Button } from "@/components/ui/button";
-import { ArrowRightIcon } from "lucide-react";
-import { useNavigate } from "react-router";
 
 const NowPlaying = () => {
 	const [nowPlayingList, setNowPlayingList] = useState([]);
 	const [loading, setLoading] = useState<boolean>(true);
-	const [currentPage, setCurrentPage] = useState<number>(1);
+	const [currentPage] = useState<number>(1);
 
 	const getNowPlayingList = (page: number) => {
 		setLoading(true);

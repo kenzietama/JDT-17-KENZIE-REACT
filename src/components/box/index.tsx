@@ -1,14 +1,6 @@
 import { Card, Heading, Text, Flex } from "@radix-ui/themes";
 
-const Index = ({
-	title,
-	desc,
-	index,
-}: {
-	title: string;
-	desc: string;
-	index: number;
-}) => {
+const Index = ({ title, desc }: { title: string; desc: string }) => {
 	return (
 		<Card
 			size="3"
